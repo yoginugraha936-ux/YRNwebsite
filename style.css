@@ -1,0 +1,720 @@
+/* ============================================
+   STYLE.CSS — Website Uji Coba
+   Struktur:
+   1. Variabel warna & reset
+   2. Body & font
+   3. Navbar
+   4. Hero (Home)
+   5. TikTok logo
+   6. Tombol
+   7. Halaman dalam (About & Contact)
+   8. Kartu (About)
+   9. Kontak list (Contact)
+   10. Footer
+   11. Animasi
+============================================ */
+
+
+/* ============================================
+   1. VARIABEL WARNA & RESET
+============================================ */
+:root {
+  --hitam:  #0a0a0a;    /* latar belakang utama */
+  --putih:  #f0f0ec;    /* teks utama */
+  --cyan:   #69C9D0;    /* aksen TikTok */
+  --pink:   #EE1D52;    /* aksen TikTok */
+  --abu:    #555;       /* teks sekunder */
+  --garis:  #1e1e1e;    /* warna garis tipis */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* ============================================
+   2. BODY & FONT
+============================================ */
+body {
+  background-color: var(--hitam);
+  color: var(--putih);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+
+  /* Grid garis tipis di latar belakang */
+  background-image:
+    linear-gradient(rgba(105,201,208,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(105,201,208,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+
+/* ============================================
+   3. NAVBAR
+============================================ */
+nav {
+  position: fixed;          /* menempel di atas */
+  top: 0; left: 0; right: 0;
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 60px;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
+}
+
+/* Logo teks di kiri navbar */
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 5px;
+  opacity: 0.6;
+}
+
+/* Daftar link navbar */
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--putih);
+  opacity: 0.45;
+  position: relative;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+/* Garis bawah saat hover */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--cyan);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  opacity: 1;
+  color: var(--cyan);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+
+/* ============================================
+   4. HERO (HOME)
+============================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 20px 60px;
+  position: relative;
+}
+
+/* Cahaya latar — cyan */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(105,201,208,0.07) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Judul besar di hero */
+.judul {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  letter-spacing: 12px;
+  margin-top: 32px;
+  animation: naik 0.8s ease forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.judul span {
+  color: var(--cyan); /* kata "UJI" warna cyan */
+}
+
+/* Teks kecil di bawah judul */
+.sub {
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--abu);
+  margin-top: 12px;
+  animation: naik 0.8s ease forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+/* Dua tombol di hero */
+.hero-tombol {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  animation: naik 0.8s ease forwards;
+  animation-delay: 0.7s;
+  opacity: 0;
+}
+
+
+/* ============================================
+   5. TIKTOK LOGO (HOME)
+============================================ */
+.tiktok-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  animation: naik 0.8s ease forwards, ambang 4s ease-in-out infinite;
+  animation-delay: 0.1s, 1s;
+  opacity: 0;
+}
+
+/* Gambar logo */
+.tiktok-logo img {
+  width: 140px;
+  height: 140px;
+  transition: transform 0.3s, filter 0.3s;
+  filter: drop-shadow(0 0 12px rgba(105,201,208,0.4));
+}
+
+/* Saat logo di-hover */
+.tiktok-logo:hover img {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 20px rgba(105,201,208,0.7));
+}
+
+/* Teks @yrn_9.7 di bawah logo */
+.tiktok-hint {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--abu);
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.tiktok-logo:hover .tiktok-hint {
+  color: var(--cyan);
+}
+
+
+/* ============================================
+   6. TOMBOL
+============================================ */
+.tombol {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--putih);
+  border: 1px solid var(--garis);
+  padding: 12px 28px;
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+
+.tombol:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(105,201,208,0.05);
+}
+
+
+/* ============================================
+   7. HALAMAN DALAM (ABOUT & CONTACT)
+============================================ */
+.halaman {
+  min-height: 100vh;
+  padding: 140px 60px 80px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Label kecil merah muda di atas judul */
+.label {
+  font-size: 0.62rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 20px;
+  animation: naik 0.7s ease forwards 0.1s;
+  opacity: 0;
+}
+
+/* Judul besar halaman dalam */
+.judul-halaman {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: 3px;
+  margin-bottom: 32px;
+  animation: naik 0.7s ease forwards 0.2s;
+  opacity: 0;
+}
+
+/* Kata kedua outline */
+.judul-halaman span {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(105,201,208,0.35);
+}
+
+/* Teks paragraf biasa */
+.teks-biasa {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--abu);
+  max-width: 520px;
+  margin-bottom: 48px;
+  animation: naik 0.7s ease forwards 0.3s;
+  opacity: 0;
+}
+
+/* Link inline berwarna cyan */
+.link-cyan {
+  color: var(--cyan);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(105,201,208,0.3);
+  transition: border-color 0.3s;
+}
+.link-cyan:hover {
+  border-color: var(--cyan);
+}
+
+
+/* ============================================
+   8. KARTU (ABOUT)
+============================================ */
+.kartu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;               /* gap 1px jadi seperti garis antar kartu */
+  background: var(--garis);
+  margin-bottom: 48px;
+  animation: naik 0.7s ease forwards 0.4s;
+  opacity: 0;
+}
+
+.kartu {
+  background: var(--hitam);
+  padding: 32px 24px;
+  position: relative;
+  transition: background 0.3s;
+  overflow: hidden;
+}
+
+/* Garis cyan dari kiri saat hover */
+.kartu::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 0;
+  background: var(--cyan);
+  transition: height 0.4s;
+}
+
+.kartu:hover::before {
+  height: 100%;
+}
+
+.kartu:hover {
+  background: #0f0f0f;
+}
+
+/* Angka besar di latar kartu */
+.kartu-nomor {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem;
+  color: #1a1a1a;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.kartu-judul {
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--putih);
+  margin-bottom: 10px;
+}
+
+.kartu-teks {
+  font-size: 0.82rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+
+/* ============================================
+   9. KONTAK LIST (CONTACT)
+============================================ */
+.kontak-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;               /* garis tipis antar item */
+  background: var(--garis);
+  margin-bottom: 8px;
+  animation: naik 0.7s ease forwards 0.4s;
+  opacity: 0;
+}
+
+.kontak-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--hitam);
+  padding: 28px 32px;
+  text-decoration: none;
+  color: var(--putih);
+  transition: background 0.3s, padding-left 0.3s;
+}
+
+.kontak-item:hover {
+  background: #0f0f0f;
+  padding-left: 40px;     /* geser sedikit ke kanan saat hover */
+}
+
+/* Sisi kiri: ikon + nama platform */
+.kontak-kiri {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Kotak ikon */
+.kontak-ikon {
+  width: 44px; height: 44px;
+  border: 1px solid var(--garis);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--abu);
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.kontak-item:hover .kontak-ikon {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+/* Ikon TikTok pakai warna pink */
+.tiktok-ikon {
+  color: var(--pink);
+}
+
+.kontak-item:hover .tiktok-ikon {
+  color: var(--cyan);
+}
+
+.kontak-platform {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--putih);
+  margin-bottom: 4px;
+}
+
+.kontak-handle {
+  font-size: 0.82rem;
+  color: var(--abu);
+}
+
+/* Panah kanan */
+.kontak-panah {
+  color: var(--abu);
+  font-size: 1.1rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.kontak-item:hover .kontak-panah {
+  color: var(--cyan);
+  transform: translateX(6px);
+}
+
+
+/* ============================================
+   10. FOOTER
+============================================ */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 60px;
+  border-top: 1px solid #131313;
+}
+
+.f-kiri {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  color: #222;
+}
+
+.f-kanan {
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1e1e1e;
+}
+
+
+/* ============================================
+   11. ANIMASI
+============================================ */
+
+/* Muncul dari bawah ke atas */
+@keyframes naik {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Logo mengambang naik-turun */
+@keyframes ambang {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+
+/* ============================================
+   RESPONSIVE — layar kecil (HP)
+============================================ */
+@media (max-width: 640px) {
+  nav {
+    padding: 20px 24px;
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .nav-links a {
+    font-size: 0.6rem;
+  }
+
+  .halaman {
+    padding: 120px 24px 60px;
+  }
+
+  .kartu-grid {
+    grid-template-columns: 1fr; /* kartu jadi satu kolom di HP */
+  }
+
+  footer {
+    padding: 20px 24px;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .hero-tombol {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+/* ==============================
+   CV PAGE — TAMBAHAN STYLE
+============================== */
+
+/* Setiap bagian CV (Biodata, Pendidikan, dll) */
+.cv-section {
+  margin-bottom: 60px;
+  animation: naik 0.7s ease forwards;
+  opacity: 0;
+}
+
+/* Jalankan animasi dengan delay berbeda tiap section */
+.cv-section:nth-child(1) { animation-delay: 0.3s; }
+.cv-section:nth-child(2) { animation-delay: 0.4s; }
+.cv-section:nth-child(3) { animation-delay: 0.5s; }
+.cv-section:nth-child(4) { animation-delay: 0.6s; }
+.cv-section:nth-child(5) { animation-delay: 0.7s; }
+
+/* Judul tiap bagian CV (contoh: "Pendidikan") */
+.cv-section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 5px;
+  color: var(--cyan);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--garis);
+}
+
+/* ---- BIODATA ---- */
+.cv-biodata {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--garis);
+}
+
+.bio-item {
+  display: flex;
+  background: var(--hitam);
+  padding: 16px 24px;
+  gap: 40px;
+  align-items: center;
+}
+
+.bio-key {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--abu);
+  min-width: 140px;
+}
+
+.bio-val {
+  font-size: 0.9rem;
+  color: var(--putih);
+}
+
+/* ---- PENDIDIKAN & PENGALAMAN ---- */
+.cv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--garis);
+}
+
+.cv-item {
+  display: flex;
+  gap: 40px;
+  background: var(--hitam);
+  padding: 24px;
+  transition: background 0.3s, padding-left 0.3s;
+  position: relative;
+}
+
+/* Garis cyan dari kiri saat hover */
+.cv-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 2px; height: 0;
+  background: var(--cyan);
+  transition: height 0.4s;
+}
+
+.cv-item:hover::before { height: 100%; }
+.cv-item:hover {
+  background: #0f0f0f;
+  padding-left: 32px;
+}
+
+/* Kolom kiri: tahun */
+.cv-item-kiri {
+  min-width: 140px;
+}
+
+.cv-tahun {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: var(--abu);
+  text-transform: uppercase;
+}
+
+/* Kolom kanan: nama, sub, deskripsi */
+.cv-item-judul {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--putih);
+  margin-bottom: 4px;
+}
+
+.cv-item-sub {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 8px;
+}
+
+.cv-item-desc {
+  font-size: 0.82rem;
+  color: var(--abu);
+  line-height: 1.7;
+}
+
+/* ---- SKILL BAR ---- */
+.skill-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.skill-nama {
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--putih);
+}
+
+.skill-persen {
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  color: var(--abu);
+}
+
+/* Track bar abu */
+.skill-bar {
+  width: 100%;
+  height: 2px;
+  background: var(--garis);
+}
+
+/* Isi bar cyan — lebar diambil dari --persen */
+.skill-isi {
+  height: 100%;
+  width: var(--persen);
+  background: linear-gradient(to right, var(--cyan), var(--pink));
+  animation: isiBar 1.2s ease forwards;
+  transform-origin: left;
+}
+
+@keyframes isiBar {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Link cyan inline */
+.link-cyan {
+  color: var(--cyan);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(105,201,208,0.3);
+  transition: border-color 0.3s;
+}
+.link-cyan:hover { border-color: var(--cyan); }
